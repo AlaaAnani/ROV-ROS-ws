@@ -1,0 +1,40 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/gazebo_msgs_generate_messages_cpp"
+  "/home/alaa/rov_ws/devel/include/gazebo_msgs/ContactsState.h"
+  "/home/alaa/rov_ws/devel/include/gazebo_msgs/ODEPhysics.h"
+  "/home/alaa/rov_ws/devel/include/gazebo_msgs/ModelStates.h"
+  "/home/alaa/rov_ws/devel/include/gazebo_msgs/ODEJointProperties.h"
+  "/home/alaa/rov_ws/devel/include/gazebo_msgs/LinkState.h"
+  "/home/alaa/rov_ws/devel/include/gazebo_msgs/ModelState.h"
+  "/home/alaa/rov_ws/devel/include/gazebo_msgs/LinkStates.h"
+  "/home/alaa/rov_ws/devel/include/gazebo_msgs/WorldState.h"
+  "/home/alaa/rov_ws/devel/include/gazebo_msgs/ContactState.h"
+  "/home/alaa/rov_ws/devel/include/gazebo_msgs/DeleteModel.h"
+  "/home/alaa/rov_ws/devel/include/gazebo_msgs/GetModelState.h"
+  "/home/alaa/rov_ws/devel/include/gazebo_msgs/ApplyJointEffort.h"
+  "/home/alaa/rov_ws/devel/include/gazebo_msgs/SetLightProperties.h"
+  "/home/alaa/rov_ws/devel/include/gazebo_msgs/GetWorldProperties.h"
+  "/home/alaa/rov_ws/devel/include/gazebo_msgs/GetModelProperties.h"
+  "/home/alaa/rov_ws/devel/include/gazebo_msgs/SetJointTrajectory.h"
+  "/home/alaa/rov_ws/devel/include/gazebo_msgs/SpawnModel.h"
+  "/home/alaa/rov_ws/devel/include/gazebo_msgs/GetLightProperties.h"
+  "/home/alaa/rov_ws/devel/include/gazebo_msgs/JointRequest.h"
+  "/home/alaa/rov_ws/devel/include/gazebo_msgs/SetModelConfiguration.h"
+  "/home/alaa/rov_ws/devel/include/gazebo_msgs/ApplyBodyWrench.h"
+  "/home/alaa/rov_ws/devel/include/gazebo_msgs/SetJointProperties.h"
+  "/home/alaa/rov_ws/devel/include/gazebo_msgs/BodyRequest.h"
+  "/home/alaa/rov_ws/devel/include/gazebo_msgs/SetModelState.h"
+  "/home/alaa/rov_ws/devel/include/gazebo_msgs/DeleteLight.h"
+  "/home/alaa/rov_ws/devel/include/gazebo_msgs/SetLinkProperties.h"
+  "/home/alaa/rov_ws/devel/include/gazebo_msgs/GetPhysicsProperties.h"
+  "/home/alaa/rov_ws/devel/include/gazebo_msgs/GetLinkState.h"
+  "/home/alaa/rov_ws/devel/include/gazebo_msgs/SetPhysicsProperties.h"
+  "/home/alaa/rov_ws/devel/include/gazebo_msgs/GetLinkProperties.h"
+  "/home/alaa/rov_ws/devel/include/gazebo_msgs/GetJointProperties.h"
+  "/home/alaa/rov_ws/devel/include/gazebo_msgs/SetLinkState.h"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang )
+  include(CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

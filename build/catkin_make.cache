@@ -1,0 +1,2 @@
+GUI:distributor:motion_map:ros-keyboard-master:serial:serial_example_master:video_stream_opencv
+-DCATKIN_DEVEL_PREFIX=/home/alaa/rov_ws/devel -DCMAKE_INSTALL_PREFIX=/home/alaa/rov_ws/install -G Unix Makefiles

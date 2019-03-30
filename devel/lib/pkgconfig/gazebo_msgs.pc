@@ -1,0 +1,8 @@
+prefix=/home/alaa/rov_ws/devel
+
+Name: gazebo_msgs
+Description: Description of gazebo_msgs
+Version: 2.5.17
+Cflags: -I/home/alaa/rov_ws/devel/include
+Libs: -L/home/alaa/rov_ws/devel/lib 
+Requires: message_runtime std_msgs trajectory_msgs geometry_msgs sensor_msgs std_srvs

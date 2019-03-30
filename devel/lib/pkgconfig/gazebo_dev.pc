@@ -1,0 +1,8 @@
+prefix=/home/alaa/rov_ws/devel
+
+Name: gazebo_dev
+Description: Description of gazebo_dev
+Version: 2.5.17
+Cflags: 
+Libs: -L/home/alaa/rov_ws/devel/lib 
+Requires: 

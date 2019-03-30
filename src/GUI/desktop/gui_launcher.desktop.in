@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Aquavaders_gui
+Comment=ROS desktop launcher test
+Exec=bash -c "source /opt/ros/kinetic/setup.bash && roslaunch GUI gui_launcher.launch"
+Icon=${HOME_DIR}/.local/share/applications/logo.png
+Type=Application
+Categories=ROS;Development;Engineering;
+StartupNotify=true
+
+

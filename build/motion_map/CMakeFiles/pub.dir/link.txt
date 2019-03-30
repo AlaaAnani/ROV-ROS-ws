@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/pub.dir/src/pub.cpp.o  -o /home/alaa/rov_ws/devel/lib/motion_map/pub -rdynamic 

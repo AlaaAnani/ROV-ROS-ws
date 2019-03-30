@@ -1,0 +1,8 @@
+prefix=/home/alaa/rov_ws/devel
+
+Name: pitch_pid
+Description: Description of pitch_pid
+Version: 0.0.27
+Cflags: -I/home/alaa/rov_ws/devel/include -I/home/alaa/rov_ws/src/pitch_pid/include
+Libs: -L/home/alaa/rov_ws/devel/lib 
+Requires: roscpp std_msgs message_runtime dynamic_reconfigure

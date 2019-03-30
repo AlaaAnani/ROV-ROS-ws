@@ -1,0 +1,10 @@
+int64 motorA
+int64 motorB
+int64 motorC
+int64 motorD
+int64 motorE
+int64 motorF
+bool PH_button
+bool TEMP_button
+bool MAG_button
+bool WATER_button

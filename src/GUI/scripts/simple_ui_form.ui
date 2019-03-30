@@ -1,0 +1,1566 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1149</width>
+    <height>723</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QTabWidget" name="Qtab">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="MainTab">
+      <attribute name="title">
+       <string>Main Tab</string>
+      </attribute>
+      <widget class="QSplitter" name="splitter_23">
+       <property name="geometry">
+        <rect>
+         <x>9</x>
+         <y>9</y>
+         <width>228</width>
+         <height>218</height>
+        </rect>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <widget class="QSplitter" name="splitter_2">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <widget class="QLabel" name="Yaw_label">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(114, 159, 207);
+border-color: rgb(0, 0, 0);
+font: 75 15pt &quot;URW Bookman L&quot;;</string>
+         </property>
+         <property name="text">
+          <string>Yaw</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="Pitch_label">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(114, 159, 207);
+font: 75 15pt &quot;URW Bookman L&quot;;</string>
+         </property>
+         <property name="text">
+          <string>Pitch</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="Roll_label">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(114, 159, 207);
+font: 75 15pt &quot;URW Bookman L&quot;;</string>
+         </property>
+         <property name="text">
+          <string>Roll</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QSplitter" name="splitter">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <widget class="QTextBrowser" name="Yaw_value">
+         <property name="html">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+        <widget class="QTextBrowser" name="Pitch"/>
+        <widget class="QTextBrowser" name="Roll">
+         <property name="styleSheet">
+          <string notr="true">body {
+  color: red;
+}
+
+h1 {
+  color: #00ff00;
+}
+
+p.ex {
+  color: rgb(0,0,255);
+}</string>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+      <widget class="QSplitter" name="splitter_7">
+       <property name="geometry">
+        <rect>
+         <x>9</x>
+         <y>566</y>
+         <width>228</width>
+         <height>99</height>
+        </rect>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <widget class="QLabel" name="Temp_sens_label_4">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(117, 80, 123);
+font: 75 15pt &quot;URW Bookman L&quot;;</string>
+        </property>
+        <property name="text">
+         <string>MagnetoMeter</string>
+        </property>
+       </widget>
+       <widget class="QSplitter" name="splitter_6">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <widget class="QTextBrowser" name="Magnet1">
+         <property name="styleSheet">
+          <string notr="true">body {
+  color: red;
+}
+
+h1 {
+  color: #00ff00;
+}
+
+p.ex {
+  color: rgb(0,0,255);
+}</string>
+         </property>
+        </widget>
+        <widget class="QTextBrowser" name="Magnet2">
+         <property name="styleSheet">
+          <string notr="true">body {
+  color: red;
+}
+
+h1 {
+  color: #00ff00;
+}
+
+p.ex {
+  color: rgb(0,0,255);
+}</string>
+         </property>
+        </widget>
+        <widget class="QTextBrowser" name="Magnet3">
+         <property name="styleSheet">
+          <string notr="true">body {
+  color: red;
+}
+
+h1 {
+  color: #00ff00;
+}
+
+p.ex {
+  color: rgb(0,0,255);
+}</string>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+      <widget class="QSplitter" name="splitter_27">
+       <property name="geometry">
+        <rect>
+         <x>9</x>
+         <y>338</y>
+         <width>228</width>
+         <height>146</height>
+        </rect>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <widget class="QSplitter" name="splitter_24">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <widget class="QSplitter" name="splitter_4">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <widget class="QLabel" name="Temp_sens_label">
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(117, 80, 123);
+font: 75 15pt &quot;URW Bookman L&quot;;</string>
+          </property>
+          <property name="text">
+           <string>Temp Sens</string>
+          </property>
+         </widget>
+         <widget class="QTextBrowser" name="Temp_value">
+          <property name="styleSheet">
+           <string notr="true">body {
+  color: red;
+}
+
+h1 {
+  color: #00ff00;
+}
+
+p.ex {
+  color: rgb(0,0,255);
+}</string>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QLabel" name="unit_label_8">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(115, 210, 22);
+border-color: rgb(0, 0, 0);
+font: 75 11pt &quot;URW Bookman L&quot;;</string>
+         </property>
+         <property name="text">
+          <string>deg C</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QSplitter" name="splitter_26">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <widget class="QLabel" name="Temp_sens_label_2">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(117, 80, 123);
+font: 75 15pt &quot;URW Bookman L&quot;;</string>
+         </property>
+         <property name="text">
+          <string>water Sens</string>
+         </property>
+        </widget>
+        <widget class="QTextBrowser" name="Water_sens">
+         <property name="styleSheet">
+          <string notr="true">body {
+  color: red;
+}
+
+h1 {
+  color: #00ff00;
+}
+
+p.ex {
+  color: rgb(0,0,255);
+}</string>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+      <widget class="QSplitter" name="splitter_8">
+       <property name="geometry">
+        <rect>
+         <x>243</x>
+         <y>233</y>
+         <width>875</width>
+         <height>99</height>
+        </rect>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <widget class="QSplitter" name="splitter_9">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <widget class="QLabel" name="Joy_values_label_8">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(239, 41, 41);
+border-color: rgb(0, 0, 0);
+font: 75 15pt &quot;URW Bookman L&quot;;</string>
+         </property>
+         <property name="text">
+          <string>MotorCurr1</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="Joy_values_label_9">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(239, 41, 41);
+border-color: rgb(0, 0, 0);
+font: 75 15pt &quot;URW Bookman L&quot;;
+</string>
+         </property>
+         <property name="text">
+          <string>MotorCurr2</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="Joy_values_label_10">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(239, 41, 41);
+border-color: rgb(0, 0, 0);
+font: 75 15pt &quot;URW Bookman L&quot;;</string>
+         </property>
+         <property name="text">
+          <string>MotorCurr3</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="Joy_values_label_11">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(239, 41, 41);
+border-color: rgb(0, 0, 0);
+font: 75 15pt &quot;URW Bookman L&quot;;
+</string>
+         </property>
+         <property name="text">
+          <string>MotorCurr4</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="Joy_values_label_12">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(239, 41, 41);
+border-color: rgb(0, 0, 0);
+font: 75 15pt &quot;URW Bookman L&quot;;</string>
+         </property>
+         <property name="text">
+          <string>MotorCurr5</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="Joy_values_label_13">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(239, 41, 41);
+border-color: rgb(0, 0, 0);
+font: 75 15pt &quot;URW Bookman L&quot;;
+</string>
+         </property>
+         <property name="text">
+          <string>MotorCurr6</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QSplitter" name="splitter_11">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <widget class="QTextBrowser" name="MotorCurr1">
+         <property name="html">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+        <widget class="QTextBrowser" name="MotorCurr2">
+         <property name="html">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+        <widget class="QTextBrowser" name="MotorCurr3">
+         <property name="html">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+        <widget class="QTextBrowser" name="MotorCurr4">
+         <property name="html">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+        <widget class="QTextBrowser" name="MotorCurr5">
+         <property name="html">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+        <widget class="QTextBrowser" name="MotorCurr6">
+         <property name="html">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+      <widget class="QSplitter" name="splitter_13">
+       <property name="geometry">
+        <rect>
+         <x>243</x>
+         <y>40</y>
+         <width>871</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <widget class="QLabel" name="Joy_values_label_14">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(38, 95, 122);
+border-color: rgb(0, 0, 0);
+font: 75 15pt &quot;URW Bookman L&quot;;</string>
+        </property>
+        <property name="text">
+         <string>MotorValue1</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Joy_values_label_15">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(38, 95, 122);
+border-color: rgb(0, 0, 0);
+font: 75 15pt &quot;URW Bookman L&quot;;</string>
+        </property>
+        <property name="text">
+         <string>MotorValue2</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Joy_values_label_16">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(38, 95, 122);
+border-color: rgb(0, 0, 0);
+font: 75 15pt &quot;URW Bookman L&quot;;</string>
+        </property>
+        <property name="text">
+         <string>MotorValue3</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Joy_values_label_17">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(38, 95, 122);
+border-color: rgb(0, 0, 0);
+font: 75 15pt &quot;URW Bookman L&quot;;</string>
+        </property>
+        <property name="text">
+         <string>MotorValue4</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Joy_values_label_18">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(38, 95, 122);
+border-color: rgb(0, 0, 0);
+font: 75 15pt &quot;URW Bookman L&quot;;</string>
+        </property>
+        <property name="text">
+         <string>MotorValue5</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Joy_values_label_19">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(38, 95, 122);
+border-color: rgb(0, 0, 0);
+font: 75 15pt &quot;URW Bookman L&quot;;</string>
+        </property>
+        <property name="text">
+         <string>MotorValue6</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QLabel" name="Current_sens_label">
+       <property name="geometry">
+        <rect>
+         <x>243</x>
+         <y>202</y>
+         <width>162</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(136, 138, 133);
+border-color: rgb(0, 0, 0);
+font: 75 15pt &quot;URW Bookman L&quot;;</string>
+       </property>
+       <property name="text">
+        <string>Current Sensors</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="Joy_values_label">
+       <property name="geometry">
+        <rect>
+         <x>243</x>
+         <y>9</y>
+         <width>114</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(136, 138, 133);
+border-color: rgb(0, 0, 0);
+font: 75 15pt &quot;URW Bookman L&quot;;</string>
+       </property>
+       <property name="text">
+        <string>JOY Values</string>
+       </property>
+      </widget>
+      <widget class="QSplitter" name="splitter_3">
+       <property name="geometry">
+        <rect>
+         <x>9</x>
+         <y>233</y>
+         <width>228</width>
+         <height>99</height>
+        </rect>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <widget class="QLabel" name="PH_label">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(239, 41, 41);
+font: 75 15pt &quot;URW Bookman L&quot;;</string>
+        </property>
+        <property name="text">
+         <string>PH Sensor</string>
+        </property>
+       </widget>
+       <widget class="QTextBrowser" name="PHvalue">
+        <property name="styleSheet">
+         <string notr="true">body {
+  color: red;
+}
+
+h1 {
+  color: #00ff00;
+}
+
+p.ex {
+  color: rgb(0,0,255);
+}</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QSplitter" name="splitter_12">
+       <property name="geometry">
+        <rect>
+         <x>243</x>
+         <y>71</y>
+         <width>875</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <widget class="QTextBrowser" name="MotorValue1">
+        <property name="html">
+         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="QTextBrowser" name="MotorValue2">
+        <property name="html">
+         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="QTextBrowser" name="MotorValue3">
+        <property name="html">
+         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="QTextBrowser" name="MotorValue4">
+        <property name="html">
+         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="QTextBrowser" name="MotorValue5">
+        <property name="html">
+         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="QTextBrowser" name="MotorValue6">
+        <property name="html">
+         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QSplitter" name="splitter_15">
+       <property name="geometry">
+        <rect>
+         <x>9</x>
+         <y>490</y>
+         <width>228</width>
+         <height>70</height>
+        </rect>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <widget class="QLabel" name="Temp_sens_label_3">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(117, 80, 123);
+font: 75 15pt &quot;URW Bookman L&quot;;</string>
+        </property>
+        <property name="text">
+         <string>Pressure Sens</string>
+        </property>
+       </widget>
+       <widget class="QTextBrowser" name="Press_sens">
+        <property name="styleSheet">
+         <string notr="true">body {
+  color: red;
+}
+
+h1 {
+  color: #00ff00;
+}
+
+p.ex {
+  color: rgb(0,0,255);
+}</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QSplitter" name="splitter_42">
+       <property name="geometry">
+        <rect>
+         <x>300</x>
+         <y>390</y>
+         <width>291</width>
+         <height>101</height>
+        </rect>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <widget class="QSplitter" name="splitter_33">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <widget class="QPushButton" name="cam_start_butt">
+         <property name="styleSheet">
+          <string notr="true">  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;</string>
+         </property>
+         <property name="text">
+          <string>Start Cam</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="cam_stop_butt">
+         <property name="styleSheet">
+          <string notr="true">  background-color: rgb(239, 41, 41);
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;</string>
+         </property>
+         <property name="text">
+          <string>Stop Cam</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QSplitter" name="splitter_41">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <widget class="QLabel" name="Roll_label_2">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(114, 159, 207);
+font: 75 15pt &quot;URW Bookman L&quot;;</string>
+         </property>
+         <property name="text">
+          <string>Index</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="in_cam_index"/>
+       </widget>
+      </widget>
+      <widget class="QSplitter" name="splitter_43">
+       <property name="geometry">
+        <rect>
+         <x>680</x>
+         <y>390</y>
+         <width>321</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <widget class="QPushButton" name="rov_start_butt">
+        <property name="styleSheet">
+         <string notr="true">  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;</string>
+        </property>
+        <property name="text">
+         <string>Launch ROV</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="rov_stop_butt">
+        <property name="styleSheet">
+         <string notr="true">  background-color: rgb(239, 41, 41);
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;</string>
+        </property>
+        <property name="text">
+         <string>Stop ROV</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QSplitter" name="splitter_46">
+       <property name="geometry">
+        <rect>
+         <x>680</x>
+         <y>470</y>
+         <width>321</width>
+         <height>91</height>
+        </rect>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <widget class="QSplitter" name="splitter_45">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <widget class="QLabel" name="Roll_label_3">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(114, 159, 207);
+font: 75 15pt &quot;URW Bookman L&quot;;</string>
+         </property>
+         <property name="text">
+          <string>com port</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="in_com_port"/>
+       </widget>
+       <widget class="QSplitter" name="splitter_44">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <widget class="QLabel" name="Roll_label_4">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(114, 159, 207);
+font: 75 15pt &quot;URW Bookman L&quot;;</string>
+         </property>
+         <property name="text">
+          <string>Joy port</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="in_joy_port"/>
+       </widget>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="CannonMission">
+      <attribute name="title">
+       <string>Cannon Mission</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="0" column="0">
+        <widget class="QSplitter" name="splitter_37">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <widget class="QSplitter" name="splitter_36">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <widget class="QSplitter" name="splitter_35">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <widget class="QSplitter" name="splitter_34">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <widget class="QLabel" name="Canon_T_Label">
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(186, 189, 182);
+border-color: rgb(0, 0, 0);
+font: 75 11pt &quot;URW Bookman L&quot;;</string>
+             </property>
+             <property name="text">
+              <string>Canon Type</string>
+             </property>
+            </widget>
+            <widget class="QSplitter" name="splitter_19">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <widget class="QRadioButton" name="AF_RB">
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(138, 226, 52);</string>
+              </property>
+              <property name="text">
+               <string>AF</string>
+              </property>
+             </widget>
+             <widget class="QRadioButton" name="Else_RB">
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(138, 226, 52);</string>
+              </property>
+              <property name="text">
+               <string>Else</string>
+              </property>
+             </widget>
+            </widget>
+           </widget>
+           <widget class="QPushButton" name="Start_cannon">
+            <property name="styleSheet">
+             <string notr="true">  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;</string>
+            </property>
+            <property name="text">
+             <string>Start Measuring</string>
+            </property>
+           </widget>
+          </widget>
+          <widget class="QSplitter" name="splitter_21">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <widget class="QSplitter" name="splitter_17">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <widget class="QLabel" name="Radius1_Label">
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(114, 159, 207);
+border-color: rgb(0, 0, 0);
+font: 75 11pt &quot;URW Bookman L&quot;;</string>
+             </property>
+             <property name="text">
+              <string>Radius1</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="Radius2_Label">
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(114, 159, 207);
+border-color: rgb(0, 0, 0);
+font: 75 11pt &quot;URW Bookman L&quot;;</string>
+             </property>
+             <property name="text">
+              <string>Radius2</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="Radius3_Label">
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(114, 159, 207);
+border-color: rgb(0, 0, 0);
+font: 75 11pt &quot;URW Bookman L&quot;;</string>
+             </property>
+             <property name="text">
+              <string>Radius3</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="length_label">
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(114, 159, 207);
+border-color: rgb(0, 0, 0);
+font: 75 11pt &quot;URW Bookman L&quot;;</string>
+             </property>
+             <property name="text">
+              <string>Length</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="Volume_label">
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(114, 159, 207);
+border-color: rgb(0, 0, 0);
+font: 75 11pt &quot;URW Bookman L&quot;;</string>
+             </property>
+             <property name="text">
+              <string>Volume</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="Weight_label">
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(114, 159, 207);
+border-color: rgb(0, 0, 0);
+font: 75 11pt &quot;URW Bookman L&quot;;</string>
+             </property>
+             <property name="text">
+              <string>Weight</string>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QSplitter" name="splitter_18">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <widget class="QTextBrowser" name="Radius1Value">
+             <property name="html">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+            <widget class="QTextBrowser" name="Radius2Value">
+             <property name="html">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+            <widget class="QTextBrowser" name="Radius3Value">
+             <property name="html">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+            <widget class="QTextBrowser" name="Cannon_length_value">
+             <property name="html">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+            <widget class="QTextBrowser" name="Cannon_volume_value">
+             <property name="html">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+            <widget class="QTextBrowser" name="Canno_Weight_value">
+             <property name="html">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QSplitter" name="splitter_20">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <widget class="QLabel" name="unit_label_2">
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(115, 210, 22);
+border-color: rgb(0, 0, 0);
+font: 75 11pt &quot;URW Bookman L&quot;;</string>
+             </property>
+             <property name="text">
+              <string>CM</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="unit_label_3">
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(115, 210, 22);
+border-color: rgb(0, 0, 0);
+font: 75 11pt &quot;URW Bookman L&quot;;</string>
+             </property>
+             <property name="text">
+              <string>CM</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="unit_label_4">
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(115, 210, 22);
+border-color: rgb(0, 0, 0);
+font: 75 11pt &quot;URW Bookman L&quot;;</string>
+             </property>
+             <property name="text">
+              <string>CM</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="unit_label_6">
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(115, 210, 22);
+border-color: rgb(0, 0, 0);
+font: 75 11pt &quot;URW Bookman L&quot;;</string>
+             </property>
+             <property name="text">
+              <string>CM</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="unit_label_5">
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(115, 210, 22);
+border-color: rgb(0, 0, 0);
+font: 75 11pt &quot;URW Bookman L&quot;;</string>
+             </property>
+             <property name="text">
+              <string>CM^3</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="unit_label_7">
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(115, 210, 22);
+border-color: rgb(0, 0, 0);
+font: 75 11pt &quot;URW Bookman L&quot;;</string>
+             </property>
+             <property name="text">
+              <string>Newton</string>
+             </property>
+            </widget>
+           </widget>
+          </widget>
+         </widget>
+         <widget class="QPushButton" name="Terminate_Cannon_button">
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(239, 41, 41);
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;</string>
+          </property>
+          <property name="text">
+           <string>Terminate Process</string>
+          </property>
+         </widget>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QSplitter" name="splitter_38">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <widget class="QLabel" name="Canon_T_Label_6">
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(239, 41, 41);
+border-color: rgb(0, 0, 0);
+font: 75 11pt &quot;URW Bookman L&quot;;</string>
+          </property>
+          <property name="text">
+           <string>Case_failed</string>
+          </property>
+         </widget>
+         <widget class="QSplitter" name="splitter_32">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <widget class="QPushButton" name="canon_judge">
+           <property name="styleSheet">
+            <string notr="true">  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;</string>
+           </property>
+           <property name="text">
+            <string>Judge call</string>
+           </property>
+          </widget>
+          <widget class="QSplitter" name="splitter_31">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <widget class="QSplitter" name="splitter_30">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <widget class="QLabel" name="Canon_T_Label_2">
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(186, 189, 182);
+border-color: rgb(0, 0, 0);
+font: 75 11pt &quot;URW Bookman L&quot;;</string>
+             </property>
+             <property name="text">
+              <string>In_Rad_1</string>
+             </property>
+            </widget>
+            <widget class="QLineEdit" name="in_rad_1"/>
+           </widget>
+           <widget class="QSplitter" name="splitter_29">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <widget class="QLabel" name="Canon_T_Label_3">
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(186, 189, 182);
+border-color: rgb(0, 0, 0);
+font: 75 11pt &quot;URW Bookman L&quot;;</string>
+             </property>
+             <property name="text">
+              <string>In_Rad_2</string>
+             </property>
+            </widget>
+            <widget class="QLineEdit" name="in_rad_2"/>
+           </widget>
+           <widget class="QSplitter" name="splitter_28">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <widget class="QLabel" name="Canon_T_Label_4">
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(186, 189, 182);
+border-color: rgb(0, 0, 0);
+font: 75 11pt &quot;URW Bookman L&quot;;</string>
+             </property>
+             <property name="text">
+              <string>In_Rad_3</string>
+             </property>
+            </widget>
+            <widget class="QLineEdit" name="in_rad_3"/>
+           </widget>
+           <widget class="QSplitter" name="splitter_14">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <widget class="QLabel" name="Canon_T_Label_5">
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(186, 189, 182);
+border-color: rgb(0, 0, 0);
+font: 75 11pt &quot;URW Bookman L&quot;;</string>
+             </property>
+             <property name="text">
+              <string>In_Len_4</string>
+             </property>
+            </widget>
+            <widget class="QLineEdit" name="in_len"/>
+           </widget>
+          </widget>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="LineFollowerMission">
+      <attribute name="title">
+       <string>Line Follower Mission</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_8">
+       <item row="0" column="0">
+        <widget class="QSplitter" name="splitter_83">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <widget class="QSplitter" name="splitter_5">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <widget class="QSplitter" name="splitter_10">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <widget class="QRadioButton" name="circle_start">
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(138, 226, 52);</string>
+            </property>
+            <property name="text">
+             <string>Start Circle</string>
+            </property>
+           </widget>
+           <widget class="QRadioButton" name="square_start">
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(38, 95, 122);</string>
+            </property>
+            <property name="text">
+             <string>Start Square</string>
+            </property>
+           </widget>
+          </widget>
+          <widget class="QPushButton" name="Track_line_push">
+           <property name="styleSheet">
+            <string notr="true">  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;</string>
+           </property>
+           <property name="text">
+            <string>Start Line Track</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="Cr_len_label_2">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(114, 159, 207);
+border-color: rgb(0, 0, 0);
+font: 75 11pt &quot;URW Bookman L&quot;;</string>
+           </property>
+           <property name="text">
+            <string> Crack Length:</string>
+           </property>
+          </widget>
+          <widget class="QTextBrowser" name="crack_value">
+           <property name="html">
+            <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="unit_label">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(115, 210, 22);
+border-color: rgb(0, 0, 0);
+font: 75 11pt &quot;URW Bookman L&quot;;</string>
+           </property>
+           <property name="text">
+            <string>  cm</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="StopButton">
+           <property name="styleSheet">
+            <string notr="true">  background-color: rgb(239, 41, 41);
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;</string>
+           </property>
+           <property name="text">
+            <string>EMERGENCY STOP</string>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QSplitter" name="splitter_82">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <widget class="QLabel" name="Cr_len_label_5">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(0, 189, 255);
+border-color: rgb(0, 0, 0);
+font: 75 11pt &quot;URW Bookman L&quot;;
+</string>
+           </property>
+           <property name="text">
+            <string>Grid_Mapping</string>
+           </property>
+          </widget>
+          <widget class="QSplitter" name="splitter_81">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <widget class="QSplitter" name="splitter_39">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <widget class="QTextBrowser" name="grid_1_1">
+             <property name="html">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+            <widget class="QTextBrowser" name="grid_2_1">
+             <property name="html">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+            <widget class="QTextBrowser" name="grid_3_1">
+             <property name="html">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+            <widget class="QTextBrowser" name="grid_4_1">
+             <property name="html">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QSplitter" name="splitter_40">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <widget class="QTextBrowser" name="grid_1_2">
+             <property name="html">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+            <widget class="QTextBrowser" name="grid_2_2">
+             <property name="html">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+            <widget class="QTextBrowser" name="grid_3_2">
+             <property name="html">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+            <widget class="QTextBrowser" name="grid_4_2">
+             <property name="html">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QSplitter" name="splitter_80">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <widget class="QTextBrowser" name="grid_1_3">
+             <property name="html">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+            <widget class="QTextBrowser" name="grid_2_3">
+             <property name="html">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+            <widget class="QTextBrowser" name="grid_3_3">
+             <property name="html">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+            <widget class="QTextBrowser" name="grid_4_3">
+             <property name="html">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </widget>
+          </widget>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="SpeceiesDetection">
+      <attribute name="title">
+       <string>Species Detection</string>
+      </attribute>
+      <widget class="QSplitter" name="splitter_25">
+       <property name="geometry">
+        <rect>
+         <x>370</x>
+         <y>130</y>
+         <width>271</width>
+         <height>421</height>
+        </rect>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <widget class="QSplitter" name="splitter_22">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <widget class="QTextBrowser" name="circle_no">
+         <property name="html">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+        <widget class="QTextBrowser" name="triangle_no">
+         <property name="html">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+        <widget class="QTextBrowser" name="line_no">
+         <property name="html">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+        <widget class="QTextBrowser" name="square_no">
+         <property name="html">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap>pixmaps/shapes.png</pixmap>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QSplitter" name="splitter_16">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>30</y>
+         <width>434</width>
+         <height>48</height>
+        </rect>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <widget class="QPushButton" name="Species_start">
+        <property name="styleSheet">
+         <string notr="true">  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;</string>
+        </property>
+        <property name="text">
+         <string>Start Species Mission</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="Species_terminate">
+        <property name="styleSheet">
+         <string notr="true">  background-color: rgb(239, 41, 41);
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;</string>
+        </property>
+        <property name="text">
+         <string>Terminate Mission</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>Video Feed</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <widget class="QLabel" name="Video">
+         <property name="frameShape">
+          <enum>QFrame::Box</enum>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

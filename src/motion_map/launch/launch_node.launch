@@ -1,0 +1,15 @@
+<!--%Tag(FULL)%-->
+<launch>
+  <node pkg="joy" type="joy_node" name="joy_data"> 
+    <param name="dev" type="string" value="/dev/input/js1" />
+  </node>
+
+
+  <node pkg="motion_map" type="map_motors" name="map_motors"/> 
+
+<node pkg="serial_example" type="serial_example_node" name="serial_example_node"/>
+    
+
+	
+</launch>
+<!--%EndTag(FULL)%-->

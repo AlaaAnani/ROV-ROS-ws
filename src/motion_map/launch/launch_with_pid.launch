@@ -1,0 +1,32 @@
+<!--%Tag(FULL)%-->
+<launch>
+
+  <arg name="port" default="/dev/ttyUSB1"/>
+  <arg name="dev" default="/dev/input/js0"/>
+
+  <node pkg="joy" type="joy_node" name="joy_data"> 
+    <param name="dev" type="string" value="$(arg dev)" />
+  </node>
+
+
+  <node pkg="motion_map" type="map_motors" name="map_motors"/> 
+
+<node pkg="serial_example" type="serial_example_node" name="serial_example_node">
+      <param name="port" type="string" value="$(arg port)" />
+    </node>
+<node pkg="distributor" type="distributor_node" name="distributor_node"/>
+
+
+<node pkg="GUI" name="cannon_calculations" type="cannon_calculations.py" output="screen"/>
+
+
+
+<!--
+<node pkg="yaw_pid" type="yaw_controller" name="yaw_controller"/>
+<node pkg="pitch_pid" type="pitch_controller" name="pitch_controller"/>
+<node pkg="depth_pid" type="depth_controller" name="depth_controller"/>
+    -->
+
+	
+</launch>
+<!--%EndTag(FULL)%-->

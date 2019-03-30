@@ -1,0 +1,8 @@
+prefix=/home/alaa/rov_ws/devel
+
+Name: serial
+Description: Description of serial
+Version: 1.2.1
+Cflags: -I/home/alaa/rov_ws/src/serial/include
+Libs: -L/home/alaa/rov_ws/devel/lib -lserial -lrt -lpthread
+Requires: 

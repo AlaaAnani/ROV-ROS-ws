@@ -1,0 +1,5 @@
+<!--%Tag(FULL)%-->
+<launch>
+  <node pkg="GUI" type="gui_main.py" name="gui_node"/> 
+</launch>
+<!--%EndTag(FULL)%-->
