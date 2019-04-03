@@ -375,7 +375,7 @@ void Buttons(const sensor_msgs::Joy::ConstPtr& joy)
     else
     arm_button = 0;
 
-    if (joy -> buttons[7])
+    if (joy -> buttons[0])
     t_shapes_button1 = 1;
     else
     t_shapes_button1 = 0;
