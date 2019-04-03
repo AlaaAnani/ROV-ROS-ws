@@ -9,22 +9,37 @@
 #include <sstream>
 #include <stdlib.h>
 #include <string>
-
-
-
-std_msgs::String msg;
-std::string dir_var;
-std::string line_enable = "stop";
+//Calibration part:
 const int speed = 200;
-int motorA, motorB, motorC, motorD, motorE, motorF, motor_def_A, motor_def_B, motor_def_C, motor_def_D, motor_def_E, motor_def_F;
-float yaw_control_effort, pitch_control_effort, depth_control_effort;
-bool PH_button = false, TEMP_button = false, arm_button = false, t_shapes_button1 = false, t_shapes_button2 = false, micro_rov_key = false, led_button = false;
 const int A_sign = -1;
 const int B_sign = 1;
 const int C_sign = -1;
 const int D_sign = -1;
 const int E_sign = 1;
 const int F_sign = -1;
+int Reverse = 1;
+
+/*
+G-K
+0-> DC1-R
+1-> DC1-L
+2-> arm
+3-> LED
+*/
+
+
+std_msgs::String msg;
+std::string dir_var;
+std::string line_enable = "stop";
+
+int motorA = 1500, motorB = 1500, motorC = 1500, motorD= 1500, motorE= 1500, motorF= 1500, motor_def_A, motor_def_B, motor_def_C, motor_def_D, motor_def_E, motor_def_F;
+float yaw_control_effort, pitch_control_effort, depth_control_effort;
+bool PH_button = false, TEMP_button = false, arm_button = false, t_shapes_button1 = false, t_shapes_button2 = false, micro_rov_key = false, led_button = false;
+
+
+float   z_axis_analog;
+int     diagonal_mag;
+int     diagonal_sign;
 
 #define motorA motor_def_D
 #define motorB motor_def_A
@@ -79,9 +94,67 @@ TeleopROV::TeleopROV()
 
 }
 
+void Up(const sensor_msgs::Joy::ConstPtr& joy);
+void Down(const sensor_msgs::Joy::ConstPtr& joy);
+void YAxis(const sensor_msgs::Joy::ConstPtr& joy);
+void Tilt(const sensor_msgs::Joy::ConstPtr& joy);
+void Yaw(const sensor_msgs::Joy::ConstPtr& joy);
+void DiagonalRight(const sensor_msgs::Joy::ConstPtr& joy);
+void DiagonalLeft(const sensor_msgs::Joy::ConstPtr& joy);
+void LeftOrRight(const sensor_msgs::Joy::ConstPtr& joy);
+void Buttons(const sensor_msgs::Joy::ConstPtr& joy);
+
+//Autonomous motion functions.
+void Right();
+void Left();
+void Down_autonomous();
+void Up_autonomous();
+
 void TeleopROV::direction_Callback(const std_msgs::String::ConstPtr& dir)
 {
-   dir_var = dir->data;
+    
+    dir_var = dir->data;
+    ROS_INFO_STREAM("Line follower direction callback \n");
+    
+            if (dir_var == "right")
+            {
+                ROS_INFO_STREAM("line_follower right");
+                Right();
+            }
+            else if (dir_var == "left")
+            {
+                ROS_INFO_STREAM("line_follower left");
+                Left();
+            }
+            else if (dir_var == "up")
+            {
+                ROS_INFO_STREAM("line_follower up");
+                Up_autonomous();
+            }
+            else if (dir_var == "down")
+            {
+                ROS_INFO_STREAM("line_follower down");
+                Down_autonomous();
+            }
+            else
+            {
+                motorA = 1500;
+                motorB = 1500;
+                motorC = 1500;
+                motorD = 1500;
+                motorE = 1500;
+                motorF = 1500;
+            }
+            ROS_INFO_STREAM("Autonomous mode ON!!");
+            
+    
+    std::stringstream ss;
+    char buffer[4] = "";
+    sprintf(buffer, "%d", motorF);
+
+    ss << "A" << motor_def_A << "B" <<  motor_def_B << "C" <<  motor_def_C << "D" <<  motor_def_D << "E" <<  motor_def_E << "F" <<  buffer << "G" << PH_button << arm_button << t_shapes_button1<< t_shapes_button2<< "K";
+    msg.data = ss.str();
+    rov_pub_.publish(msg);
 }
 
 void TeleopROV::LineFollowerEnable_Callback(const std_msgs::String::ConstPtr& msg)
@@ -126,177 +199,42 @@ void TeleopROV::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
     Right and left? axes[0]
     Z-rotation? axes[2]
     */
-    float z_axis_analog = (joy->axes[3] + 1)/2.0;
-    int diagonal_mag = sqrt(pow(joy->axes[0], 2) + pow(joy->axes[1], 2));
-    int diagonal_sign = ((joy->axes[1]<0)? -1:1);
-
-    if (joy -> buttons[9])
-    PH_button = 1;
-    else
-    PH_button = 0;
-     
-    if (joy -> buttons[8])
-    arm_button = 1;
-    else
-    arm_button = 0;
-
-    if (joy -> buttons[7])
-    t_shapes_button1 = 1;
-    else
-    t_shapes_button1 = 0;
-  
-
-    if (joy -> buttons[6])
-    t_shapes_button2 = true;
-    else
-    t_shapes_button2 = false;
-
-
-        ///////////////////////////////// end
-
+    z_axis_analog = (joy->axes[3] + 1)/2.0;
+    diagonal_mag = sqrt(pow(joy->axes[0], 2) + pow(joy->axes[1], 2));
+    diagonal_sign = ((joy->axes[1]<0)? -1:1);
+    Buttons(joy);
 if (line_enable == "stop") // if line follwer is not enabled
 {
-    if (joy -> buttons[5]) // reverse motion  ---->>> (check an unused button for activating the reverse motion)
-     {
-         if(joy->axes[5] != 0)     //Tilting
-	    {
-	      motorE = 1500 + (speed*joy -> axes[5]);
-	      motorF = 1500 - (speed*joy -> axes[5]);
-	    }
-  	    
-	    else if(joy->buttons[4]) //Z-Axis UP
-	    {
-	     motorE = 1500 + (speed*z_axis_analog);
-	     motorF = 1500 + (speed*z_axis_analog);
-	    }
-	    
-	    else if(joy->buttons[2]) //Z-axis DOWN
-	    {
-		motorE = 1500 - (speed*z_axis_analog);
-		motorF = 1500 - (speed*z_axis_analog);
-	    }
-	    else
-	    {
-		motorE = 1500;
-		motorF = 1500;
-	    }
+    if (joy -> buttons[5]) //reverse motion
+        Reverse = -1;
+    else
+        Reverse = 1;
 
-
-	    if(joy->axes [2] != 0  && (joy->axes [2] > 0.5 || joy->axes [2] < -0.3))     //Z-Axis Rotation is required in joystick, give motors D and E reverse values
-	    {
-		motorB = 1500 - (speed*joy -> axes[2]);
-		motorA = 1500 + (speed*joy -> axes[2]);
-		motorC = 1500 + (speed*joy -> axes[2]);
-		motorD = 1500 - (speed*joy -> axes[2]);
-	     
-	    }
-	    else if(joy->axes[1] != 0 && joy->axes[0] != 0 ) //X and Y--> Diagonal
-	    {
-		if((joy->axes[1] < 0 && joy->axes[0] < 0) && (joy->axes[1] > 0 && joy->axes[0] > 0))
-		{
-		    motorB = 1500 - diagonal_mag*diagonal_sign;
-		    motorA = 1500;
-		    motorC = 1500 - diagonal_mag*diagonal_sign;
-		    motorD = 1500;
-		}
-		else
-		{
-		    motorA = 1500 - diagonal_mag*diagonal_sign;
-		    motorB = 1500;
-		    motorD = 1500 - diagonal_mag*diagonal_sign;
-		    motorC = 1500;
-		}    
-	    }
-	    else if(joy->axes[1] != 0)        //Move forward/backward
-	    {
-	    motorB = 1500 - (speed*joy -> axes[1]);
-	    motorA = 1500 - (speed*joy -> axes[1]);
-	    motorC = 1500 - (speed*joy -> axes[1]);
-	    motorD = 1500 - (speed*joy -> axes[1]);
-	    }
-	    else if(joy->axes[0] != 0)         // Move left/right
-	    {
-	    motorA = 1500 + (speed*joy -> axes[0]);
-	    motorB = 1500 - (speed*joy -> axes[0]);
-	    motorC = 1500 - (speed*joy -> axes[0]);
-	    motorD = 1500 + (speed*joy -> axes[0]);
-	    }
-	    else 
-	    {
-		motorA = 1500;
-		motorB = 1500;
-		motorC = 1500;
-		motorD = 1500;
-	    }
-      }
-
-    else // joy normal motion 
-      {
-
+    //joy normal motion 
     if(joy->axes[5] != 0)     //Tilting
-    {
-      motorE = 1500 - (E_sign)*(speed*joy -> axes[5]);
-      motorF = 1500 + (F_sign)*(speed*joy -> axes[5]);
-    }
-    
+        Tilt(joy);  
     else if(joy->buttons[4]) //Z-Axis UP
-    {
-     motorE = 1500 + (E_sign)*(300 *z_axis_analog);
-     motorF = 1500 + (F_sign)*(300 *z_axis_analog);
-    }
-    
+        Up(joy); 
     else if(joy->buttons[2]) //Z-axis DOWN
-    {
-        motorE = 1500 - (E_sign)*(300 *z_axis_analog);
-        motorF = 1500 - (F_sign)*(300 *z_axis_analog);
-    }
+        Down(joy);
     else
     {
         motorE = 1500;
         motorF = 1500;
     }
-
-
     if(joy->axes [2] != 0  && (joy->axes [2] > 0.2 || joy->axes [2] < -0.4))     //Z-Axis Rotation is required in joystick, give motors D and E reverse values
-    {
-        motorB = 1500 + (B_sign)*(100 *joy -> axes[2]);
-        motorA = 1500 - (A_sign)*(100 *joy -> axes[2]);
-        motorC = 1500 - (C_sign)*(100 *joy -> axes[2]);
-        motorD = 1500 + (D_sign)*(100 *joy -> axes[2]);
-     
-    }
+        Yaw(joy);
     else if(joy->axes[1] != 0 && joy->axes[0] != 0 ) //X and Y--> Diagonal
     {
         if((joy->axes[1] < 0 && joy->axes[0] < 0) && (joy->axes[1] > 0 && joy->axes[0] > 0))
-        {
-            motorB = 1500 + (B_sign) *diagonal_mag*diagonal_sign;
-            motorA = 1500;
-            motorC = 1500 + (C_sign) * diagonal_mag*diagonal_sign;
-            motorD = 1500;
-        }
+            DiagonalRight(joy);
         else
-        {
-            motorA = 1500 + (A_sign) * diagonal_mag*diagonal_sign;
-            motorB = 1500;
-            motorD = 1500 + (D_sign) * diagonal_mag*diagonal_sign;
-            motorC = 1500;
-        }    
+            DiagonalLeft(joy);    
     }
     else if(joy->axes[1] != 0)        //Move forward/backward
-    {
-        // ROS_INFO_STREAM("I'm in the right case");
-    motorB = 1500 + (B_sign)* (speed*joy -> axes[1]);
-    motorA = 1500 + (A_sign)* (speed*joy -> axes[1]);
-    motorC = 1500 + (C_sign)* (speed*joy -> axes[1]);
-    motorD = 1500 + (D_sign)* (speed*joy -> axes[1]);
-    }
+        YAxis(joy);
     else if(joy->axes[0] != 0)         // Move left/right
-    {
-    motorA = 1500 - (A_sign)*(speed*joy -> axes[0]);
-    motorB = 1500 + (B_sign)* (speed*joy -> axes[0]);
-    motorC = 1500 + (C_sign)*(speed*joy -> axes[0]);
-    motorD = 1500 - (D_sign)*(speed*joy -> axes[0]);
-    }
+        LeftOrRight(joy);
     else
     {
         motorA = 1500;
@@ -304,12 +242,12 @@ if (line_enable == "stop") // if line follwer is not enabled
         motorC = 1500;
         motorD = 1500;
     }
-      }
+    
 }
 
     if (yaw_control_effort == 0 && pitch_control_effort == 0 && depth_control_effort == 0 && line_enable == "stop")
         {
-            ROS_INFO_STREAM("I'm in the callback function");
+            ROS_INFO_STREAM("Joy is changing.");
             std::stringstream ss;
             char buffer[4] = "";
             sprintf(buffer, "%d", motorF);
@@ -319,9 +257,6 @@ if (line_enable == "stop") // if line follwer is not enabled
             rov_pub_.publish(msg);   
         }
 
-    // PID part
-    
-    // ros::Duration(0.01).sleep();
 
 }
 
@@ -329,59 +264,15 @@ if (line_enable == "stop") // if line follwer is not enabled
 
 int main(int argc, char** argv)
 {
-    ros::init(argc, argv, "map_motors");
-    
+    ros::init(argc, argv, "map_motors");    
     TeleopROV teleop_ROV;
-
     ros::Rate loop_rate(10);
-    
+    ROS_INFO_STREAM("Balease");
     while (ros::ok())
     {
-        if (line_enable == "start") // if the line follwer task is on
-{
-	  if (dir_var == "right")
-	   {
-           ROS_INFO_STREAM("line_follower right");
-	    motorA = 1500 + (A_sign)*(100);
-        motorB = 1500 - (B_sign)*(100);
-        motorC = 1500 - (C_sign)*(100);
-        motorD = 1500 + (D_sign)*(100);
-	   }
-	  else if (dir_var == "left")
-	   {
-           ROS_INFO_STREAM("line_follower left");
-	    motorA = 1500 - (A_sign)*(100);
-        motorB = 1500 + (B_sign)*(100);
-        motorC = 1500 + (C_sign)*(100);
-        motorD = 1500 - (D_sign)*(100);
-	   }
-	   else if (dir_var == "up")
-	    {
-            ROS_INFO_STREAM("line_follower up");
-	    motorE = 1500 + (E_sign)*(200);
-        motorF = 1500 + (F_sign)*(200);
-	    }
-	   else if (dir_var == "down")
-	    {
-            ROS_INFO_STREAM("line_follower down");
-	    motorE = 1500 - (E_sign)*(200);
-        motorF = 1500 - (F_sign)*(200);
-	    }
-	   else
-        {
-	    motorA = 1500;
-	    motorB = 1500;
-	    motorC = 1500;
-	    motorD = 1500;
-	    motorE = 1500;
-	    motorF = 1500;
-        }
-}
-
-
         if (yaw_control_effort != 0 || pitch_control_effort != 0 || depth_control_effort != 0)
         {
-        ROS_INFO_STREAM("I'm in the while loop" << yaw_control_effort);
+        ROS_INFO_STREAM("PID while loop " << yaw_control_effort);
         motorA -= int (yaw_control_effort);
         motorB += int (yaw_control_effort);
         motorC -= int (yaw_control_effort);
@@ -410,4 +301,102 @@ int main(int argc, char** argv)
 
 
   return 0;
+}
+
+void Up(const sensor_msgs::Joy::ConstPtr& joy)
+{
+    motorE = 1500 + Reverse*(E_sign)*(300 *z_axis_analog);
+    motorF = 1500 + Reverse*(F_sign)*(300 *z_axis_analog);
+}
+void Up_autonomous()
+{
+    motorE = 1500 + speed;
+    motorF = 1500 + speed;
+}
+void Down(const sensor_msgs::Joy::ConstPtr& joy)
+{
+    motorE = 1500 - Reverse*(speed*z_axis_analog);
+	motorF = 1500 - Reverse*(speed*z_axis_analog);
+}
+void Down_autonomous()
+{
+    motorE = 1500 - speed;
+	motorF = 1500 - speed;
+}
+void YAxis(const sensor_msgs::Joy::ConstPtr& joy)
+{
+    motorB = 1500 + Reverse*(speed*joy -> axes[1]);
+	motorA = 1500 + Reverse*(speed*joy -> axes[1]);
+	motorC = 1500 + Reverse*(speed*joy -> axes[1]);
+	motorD = 1500 + Reverse*(speed*joy -> axes[1]);
+}
+void Tilt(const sensor_msgs::Joy::ConstPtr& joy)
+{
+    motorE = 1500 - Reverse*(E_sign)*(speed*joy -> axes[5]);
+    motorF = 1500 + Reverse*(F_sign)*(speed*joy -> axes[5]);
+}
+void Yaw(const sensor_msgs::Joy::ConstPtr& joy)
+{
+    motorB = 1500 + Reverse*(speed*joy -> axes[2]);
+	motorA = 1500 - Reverse*(speed*joy -> axes[2]);
+	motorC = 1500 - Reverse*(speed*joy -> axes[2]);
+	motorD = 1500 + Reverse*(speed*joy -> axes[2]);
+}
+void DiagonalRight(const sensor_msgs::Joy::ConstPtr& joy)
+{
+    motorB = 1500 + Reverse*diagonal_mag*diagonal_sign;
+    motorA = 1500;
+    motorC = 1500 + Reverse*diagonal_mag*diagonal_sign;
+    motorD = 1500;
+}
+void DiagonalLeft(const sensor_msgs::Joy::ConstPtr& joy)
+{
+    motorA = 1500 + Reverse*diagonal_mag*diagonal_sign;
+    motorB = 1500;
+    motorD = 1500 + Reverse*diagonal_mag*diagonal_sign;
+    motorC = 1500;
+}
+void LeftOrRight(const sensor_msgs::Joy::ConstPtr& joy)
+{
+    motorA = 1500 - Reverse*(speed*joy -> axes[0]);
+	motorB = 1500 + Reverse*(speed*joy -> axes[0]);
+	motorC = 1500 + Reverse*(speed*joy -> axes[0]);
+	motorD = 1500 - Reverse*(speed*joy -> axes[0]);
+}
+void Buttons(const sensor_msgs::Joy::ConstPtr& joy)
+{
+    if (joy -> buttons[9])
+    PH_button = 1;
+    else
+    PH_button = 0;
+     
+    if (joy -> buttons[8])
+    arm_button = 1;
+    else
+    arm_button = 0;
+
+    if (joy -> buttons[7])
+    t_shapes_button1 = 1;
+    else
+    t_shapes_button1 = 0;
+  
+
+    if (joy -> buttons[6])
+    t_shapes_button2 = true;
+    else
+    t_shapes_button2 = false;
+}
+void Right()
+{
+    motorA = 1500 - speed;
+	motorB = 1500 + speed;
+	motorC = 1500 + speed;
+	motorD = 1500 - speed;
+}
+void Left()
+{
+    motorA = 1500 + speed;
+	motorB = 1500 - speed;
+	motorC = 1500 - speed;
+	motorD = 1500 + speed;
 }
