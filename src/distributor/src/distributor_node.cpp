@@ -24,7 +24,7 @@ std_msgs::Bool enable_var;
 float yaw_actual_setpoint = 0, pitch_actual_setpoint = 0;
 std_msgs::Float64 yaw_pid_direction, pitch_pid_direction, depth_actual_setpoint;
 
-int pid_prev, pid_current;
+int pid_prev, pid_current, prev_enable_var = 0;
 
 float previous = 2.0;
 float current = 2.0;
@@ -64,10 +64,12 @@ std_msgs::Float64 get_pid_state(float current_state, float setpoint);
 
 void joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
 {
-  if (joy -> buttons[0])
-    {enable_var.data = true; pid_current = 1;}
-  else
-    {enable_var.data = false; pid_current = 0;}
+  if (!prev_enable_var && joy -> buttons[1])
+    {
+      enable_var.data = enable_var.data? 0:1; 
+      pid_current = enable_var.data? 1:0;
+    }
+
 
   if (joy -> buttons[2] || joy -> buttons[4])
     changing_in_depth = true;
@@ -79,12 +81,14 @@ void joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
   else
     changing_in_pitch = false;
 
+
+  prev_enable_var = joy -> buttons[1];
   previous = joy->axes[2]; 
 }
 
 void chatterCallback(const std_msgs::String::ConstPtr& msg)
 {
-  ROS_INFO("I'm in chatter callback");
+  // ROS_INFO("I'm in chatter callback");
   ParseString(msg->data, feedMsg);  
   chatter_pub.publish(feedMsg);
 }
@@ -124,9 +128,9 @@ int main(int argc, char **argv)
 void ParseString(string inp, distributor::rov_msgs &feedMsg) 
 {
 
-  feedMsg.pitch = atof(inp.substr(inp.find('A') + 1, inp.find('B')).c_str());   //pitch
-  feedMsg.roll = atof(inp.substr(inp.find('B') + 1, inp.find('C')).c_str());    //roll
-  feedMsg.yaw = atof(inp.substr(inp.find('C') + 1, inp.find('D')).c_str());     //yaw
+  feedMsg.yaw = atof(inp.substr(inp.find('A') + 1, inp.find('B')).c_str());   //pitch
+  feedMsg.pitch = atof(inp.substr(inp.find('B') + 1, inp.find('C')).c_str());    //roll
+  feedMsg.roll = atof(inp.substr(inp.find('C') + 1, inp.find('D')).c_str());     //yaw
   feedMsg.acc_x = atof(inp.substr(inp.find('D') + 1, inp.find('E')).c_str());   //acc_x
   feedMsg.acc_y = atof(inp.substr(inp.find('E') + 1, inp.find('F')).c_str());   //acc_y
   feedMsg.acc_z = atof(inp.substr(inp.find('F') + 1, inp.find('G')).c_str());   //acc_z
@@ -138,10 +142,6 @@ void ParseString(string inp, distributor::rov_msgs &feedMsg)
   feedMsg.PH = atof(inp.substr(inp.find('P')+1, inp.find('P')+2).c_str());       //PH
   feedMsg.water = atof(inp.substr(inp.find('W')+1, inp.find('W')+2).c_str());    //water
   feedMsg.temp = atof(inp.substr(inp.find('T')+1, inp.find('T')+2).c_str());     //temperature
-
-  feedMsg.mag1 = 0;
-  feedMsg.mag2 = 0;
-  feedMsg.mag3 = 0;
 
   yaw_raw_setpoint = feedMsg.yaw;
   pitch_raw_setpoint = feedMsg.pitch;
@@ -160,7 +160,7 @@ void ParseString(string inp, distributor::rov_msgs &feedMsg)
     activate_flag = true;
     get_yaw_actual_setpoint();
     get_pitch_actual_setpoint();
-    get_depth_actual_setpoint();
+   // get_depth_actual_setpoint();
     pid_prev = pid_current;
   }
   else if (activate == "start")
@@ -176,12 +176,12 @@ void ParseString(string inp, distributor::rov_msgs &feedMsg)
   pitch_pid_state = get_pid_state(feedMsg.pitch, pitch_actual_setpoint);
   depth_pid_state.data = depth_raw_setpoint;
 
-  if (previous != current)
+  if (previous != current && activate == "stop")
   {
     ROS_INFO_STREAM("joy change");
     yaw_pid_state.data = 0.0;
   }
-  if (changing_in_pitch)
+  if (changing_in_pitch && activate == "stop")
   pitch_pid_state.data = 0.0;
   
   
