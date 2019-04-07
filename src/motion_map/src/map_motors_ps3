@@ -357,15 +357,15 @@ void YAxis(const sensor_msgs::Joy::ConstPtr& joy)
 }
 void Tilt(const sensor_msgs::Joy::ConstPtr& joy)
 {
-    motorE = 1500 - Reverse*(E_sign)*(yaw_pitch_speed*joy -> axes[4]);
-    motorF = 1500 + Reverse*(F_sign)*(yaw_pitch_speed*joy -> axes[4]);
+    motorE = 1500 + Reverse*(E_sign)*(yaw_pitch_speed*joy -> axes[4]);
+    motorF = 1500 - Reverse*(F_sign)*(yaw_pitch_speed*joy -> axes[4]);
 }
 void Yaw(const sensor_msgs::Joy::ConstPtr& joy)
 {
-    motorA = 1500 - (A_sign)*FrontOff*Reverse*(yaw_pitch_speed*joy -> axes[3]);
-    motorB = 1500 + (B_sign)*FrontOff*Reverse*(yaw_pitch_speed*joy -> axes[3]);
-	motorC = 1500 - (C_sign)*BackOff*Reverse*(yaw_pitch_speed*joy -> axes[3]);
-	motorD = 1500 + (D_sign)*BackOff*Reverse*(yaw_pitch_speed*joy -> axes[3]);
+    motorA = 1500 - (A_sign)*FrontOff*(yaw_pitch_speed*joy -> axes[3]);
+    motorB = 1500 + (B_sign)*FrontOff*(yaw_pitch_speed*joy -> axes[3]);
+	motorC = 1500 - (C_sign)*BackOff*(yaw_pitch_speed*joy -> axes[3]);
+	motorD = 1500 + (D_sign)*BackOff*(yaw_pitch_speed*joy -> axes[3]);
 }
 
 void LeftOrRight(const sensor_msgs::Joy::ConstPtr& joy)
