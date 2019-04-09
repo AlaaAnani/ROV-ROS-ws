@@ -10,10 +10,10 @@
 #include <stdlib.h>
 #include <string>
 //Calibration part:
-const int yaw_pitch_speed = 200;
-const int y_speed = 200;
-const int x_speed = 200;
-int z_speed = 200;
+int yaw_pitch_speed = 200;
+int y_speed = 200;
+int x_speed = 200;
+int z_micro_speed = 200;
 
 const int A_sign = -1;
 const int B_sign = 1;
@@ -22,6 +22,10 @@ const int D_sign = -1;
 const int E_sign = 1;
 const int F_sign = -1;
 int Reverse = 1;
+
+std::string ph = "P0";
+int serial = 0, prev_serial = 0;
+
 /*
 G-K
 0-> DC1-R
@@ -36,17 +40,11 @@ std::string dir_var;
 std::string line_enable = "stop";
 std::string micro_str = "";
 
-int motorA = 1500, motorB = 1500, motorC = 1500, motorD= 1500, motorE= 1500, motorF= 1500, motor_def_A, motor_def_B, motor_def_C, motor_def_D, motor_def_E, motor_def_F;
+int r_micro = 1450, l_micro = 1450, motorA = 1500, motorB = 1500, motorC = 1500, motorD= 1500, motorE= 1500, motorF= 1500, motor_def_A, motor_def_B, motor_def_C, motor_def_D, motor_def_E, motor_def_F;
 float yaw_control_effort, pitch_control_effort, depth_control_effort;
-bool piston_button = false, TEMP_button = false, arm_button = false, t_shapes_button1 = false, t_shapes_button2 = false, micro_rov_key = false, led_button = false;
-
-//Rising edges
-int microROV_en = 0, prev_microROV_en = 0;
-bool micro_activated = false;
-
-
+bool prev_micro_activated, micro_activated = false, piston_button = false, TEMP_button = false, arm_button = false, t_shapes_button1 = false, t_shapes_button2 = false, led_button = false;
+bool send_micro = false;
 int FrontOff = 1, BackOff = 1, prev_FrontOff = 0, prev_BackOff = 0, prev_Reverse = 0, prev_PID = 0;
-
 
 float   z_axis_analog;
 int     diagonal_mag;
@@ -63,6 +61,7 @@ class TeleopROV
 {
 public:
  TeleopROV();
+ void publish();
 
 private:
  void joyCallback(const sensor_msgs::Joy::ConstPtr& joy);
@@ -71,8 +70,6 @@ private:
  // void depth_control_effort_Callback(const std_msgs::Float64::ConstPtr& msg);
  void direction_Callback(const std_msgs::String::ConstPtr& dir);
  void LineFollowerEnable_Callback(const std_msgs::String::ConstPtr& msg);
- void microCallback(const std_msgs::String::ConstPtr& msg);
-
 
  ros::NodeHandle nh_;
  ros::Publisher rov_pub_;
@@ -82,14 +79,12 @@ private:
  // ros::Subscriber depth_control_effort_sub;
  ros::Subscriber LineFollwerEnable_sub;
  ros::Subscriber dir_sub;
- ros::Subscriber micro_sub;
 };
 
 
 
 TeleopROV::TeleopROV()
 {
- 
  rov_pub_ = nh_.advertise<std_msgs::String>("motor_values", 1000);
  
  joy_sub_ = nh_.subscribe<sensor_msgs::Joy>("joy", 1000, &TeleopROV::joyCallback, this);
@@ -99,7 +94,7 @@ TeleopROV::TeleopROV()
 
  dir_sub = nh_.subscribe<std_msgs::String>("direction", 1000, &TeleopROV::direction_Callback, this);
  LineFollwerEnable_sub = nh_.subscribe<std_msgs::String>("line_follower_flag", 1000, &TeleopROV::LineFollowerEnable_Callback, this);
- micro_sub = nh_.subscribe<std_msgs::String>("keyboard/micro", 1000, &TeleopROV::microCallback, this);
+
 }
 
 void Up(const sensor_msgs::Joy::ConstPtr& joy);
@@ -119,17 +114,6 @@ void Left();
 void Down_autonomous();
 void Up_autonomous();
 
-
-void TeleopROV::microCallback(const std_msgs::String::ConstPtr& msg_keyboard)
-{
-    micro_str= msg_keyboard->data;
-    ROS_INFO_STREAM("Micro ROV msg from keyboard ^-^ = " << micro_str);
-
-    concatenate_values();
-    rov_pub_.publish(msg);    
-}
-
-
 void TeleopROV::direction_Callback(const std_msgs::String::ConstPtr& dir)
 {
     
@@ -137,38 +121,38 @@ void TeleopROV::direction_Callback(const std_msgs::String::ConstPtr& dir)
     ROS_INFO_STREAM("Line follower direction callback \n");
     if (line_enable == "start")
     {
-        if (dir_var == "right")
-        {
-            ROS_INFO_STREAM("line_follower right");
-            Right();
-        }
-        else if (dir_var == "left")
-        {
-            ROS_INFO_STREAM("line_follower left");
-            Left();
-        }
-        else if (dir_var == "up")
-        {
-            ROS_INFO_STREAM("line_follower up");
-            Up_autonomous();
-        }
-        else if (dir_var == "down")
-        {
-            ROS_INFO_STREAM("line_follower down");
-            Down_autonomous();
-        }
-        else
-        {   
-            ROS_INFO_STREAM("line_follower stop");
-            motorA = 1500;
-            motorB = 1500;
-            motorC = 1500;
-            motorD = 1500;
-            motorE = 1500;
-            motorF = 1500;
-        }
-        ROS_INFO_STREAM("Autonomous mode ON!!");
-        
+            if (dir_var == "right")
+            {
+                ROS_INFO_STREAM("line_follower right");
+                Right();
+            }
+            else if (dir_var == "left")
+            {
+                ROS_INFO_STREAM("line_follower left");
+                Left();
+            }
+            else if (dir_var == "up")
+            {
+                ROS_INFO_STREAM("line_follower up");
+                Up_autonomous();
+            }
+            else if (dir_var == "down")
+            {
+                ROS_INFO_STREAM("line_follower down");
+                Down_autonomous();
+            }
+            else
+            {
+                ROS_INFO_STREAM("line_follower stop");
+                motorA = 1500;
+                motorB = 1500;
+                motorC = 1500;
+                motorD = 1500;
+                motorE = 1500;
+                motorF = 1500;
+            }
+            ROS_INFO_STREAM("Autonomous mode ON!!");
+            
     }
     concatenate_values ();
     rov_pub_.publish(msg);
@@ -178,6 +162,7 @@ void TeleopROV::LineFollowerEnable_Callback(const std_msgs::String::ConstPtr& ms
 {
      line_enable = msg->data; 
 }
+
 
 void TeleopROV::yaw_control_effort_Callback(const std_msgs::Float64::ConstPtr& yaw_ce_msg)
 {
@@ -238,36 +223,34 @@ void TeleopROV::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
     Right and left? axes[0]
     Z-rotation? axes[2]
     */
-    z_axis_analog = (joy->axes[3] + 1)/2.0;
+    //z_axis_analog = (joy->axes[3] + 1)/2.0;
     diagonal_mag = sqrt(pow(joy->axes[0], 2) + pow(joy->axes[1], 2));
     diagonal_sign = ((joy->axes[1]<0)? -1:1);
     Buttons(joy);
-
 if (line_enable == "stop") // if line follwer is not enabled
 {
     //joy normal motion 
-    if(joy->axes[5] != 0)     //Tilting
-        {
-            Tilt(joy);  
-            ROS_INFO_STREAM("normal pitch");
-        }
-
-    else if(joy->buttons[4]) //Z-Axis UP
+    if(joy->axes[4] != 0)     //Tilting
+       {
+        Tilt(joy);  
+        ROS_INFO_STREAM("normal pitch");
+       }
+    else if(joy->buttons[5]) //Z-Axis UP
         {
             Up(joy); 
             ROS_INFO_STREAM("normal up");
         }
-    else if(joy->buttons[2]) //Z-axis DOWN
+    else if(joy->buttons[7]) //Z-axis DOWN
         {
             Down(joy); 
-            ROS_INFO_STREAM("normal down");
+            ROS_INFO_STREAM("normal up");
         }
     else
     {
         motorE = 1500;
         motorF = 1500;
     }
-    if(joy->axes [2] > 0.2 || joy->axes [2] < -0.4)     //Z-Axis Rotation is required in joystick, give motors D and E reverse values
+    if(joy->axes [3] != 0)     //Z-Axis Rotation is required in joystick, give motors D and E reverse values
         {
             Yaw(joy);
             ROS_INFO_STREAM("normal yaw");
@@ -276,7 +259,7 @@ if (line_enable == "stop") // if line follwer is not enabled
     else if(joy->axes[1] != 0)        //Move forward/backward
         {
             YAxis(joy);
-            ROS_INFO_STREAM("normal forward and backward");
+            ROS_INFO_STREAM("normal forward");
         }
     else if(joy->axes[0] != 0)         // Move left/right
         {
@@ -290,10 +273,39 @@ if (line_enable == "stop") // if line follwer is not enabled
         motorC = 1500;
         motorD = 1500;
     }
-    
- 
-}
 
+    ////////////////////////////////////// for micro ROV /////////////////////////////////////////
+    prev_micro_activated = micro_activated;
+    micro_activated = false;
+    send_micro = false;
+
+    if (joy -> axes[6] != 0)
+    {
+        ROS_INFO_STREAM("micro forward & backward");
+        send_micro = true;
+        micro_activated = true;
+        r_micro = 1450 + (joy -> axes[6] * z_micro_speed);
+        l_micro = 1450 + (joy -> axes[6] * z_micro_speed);
+    }
+
+    else if (joy -> axes[5] != 0)
+    {
+        ROS_INFO_STREAM("micro left & right");
+        send_micro = true;
+        micro_activated = true;
+        r_micro = 1450 + (joy -> axes[5] * z_micro_speed);
+        l_micro = 1450 - (joy -> axes[5] * z_micro_speed);
+    }
+    else if (prev_micro_activated && !micro_activated)
+    {
+        send_micro = true;
+        micro_activated = false;
+        r_micro = 1450;
+        l_micro = 1450;
+    }
+
+    
+}
 
     if (yaw_control_effort == 0 && pitch_control_effort == 0 && line_enable == "stop")
     {         
@@ -301,11 +313,9 @@ if (line_enable == "stop") // if line follwer is not enabled
         rov_pub_.publish(msg);
     }    
 
-    // ROS_INFO_STREAM("joy is changing");
-    prev_microROV_en = joy -> buttons[9];
-    prev_FrontOff   = joy ->buttons[8];
-    prev_BackOff    = joy-> buttons[10];
-    prev_Reverse    = joy-> buttons[11];
+    prev_FrontOff   = joy ->buttons[0];
+    prev_BackOff    = joy-> buttons[2];
+    prev_Reverse    = joy-> buttons[3];
     prev_PID = joy-> buttons[1];
 
 }
@@ -317,14 +327,20 @@ int main(int argc, char** argv)
     ros::init(argc, argv, "map_motors");    
     ROS_INFO_STREAM("Executing main");
     TeleopROV teleop_ROV;
+
+
+    ros::NodeHandle nh("~");
+    nh.getParam("ph", ph);
+    ROS_INFO("Got parameter: %s", ph.c_str());
+
     ros::spin();
     return 0;
 }
 
 void Up(const sensor_msgs::Joy::ConstPtr& joy)
 {
-     motorE = 1500 + (E_sign)*(z_speed *z_axis_analog);
-     motorF = 1500 + (F_sign)*(z_speed *z_axis_analog);
+    motorE = 1500 + (E_sign)*(z_micro_speed);
+    motorF = 1500 + (F_sign)*(z_micro_speed);
 }
 void Up_autonomous()
 {
@@ -333,8 +349,8 @@ void Up_autonomous()
 }
 void Down(const sensor_msgs::Joy::ConstPtr& joy)
 {
-     motorE = 1500 - (E_sign)*(z_speed *z_axis_analog);
-     motorF = 1500 - (F_sign)*(z_speed *z_axis_analog);
+    motorE = 1500 - (E_sign)*(z_micro_speed);
+	motorF = 1500 - (F_sign)*(z_micro_speed);
 }
 void Down_autonomous()
 {
@@ -343,72 +359,94 @@ void Down_autonomous()
 }
 void YAxis(const sensor_msgs::Joy::ConstPtr& joy)
 {
-    motorA = 1500 + FrontOff*Reverse*(y_speed*joy -> axes[1]);
-    motorB = 1500 + FrontOff*Reverse*(y_speed*joy -> axes[1]);
-	motorC = 1500 + BackOff*Reverse*(y_speed*joy -> axes[1]);
-	motorD = 1500 + BackOff*Reverse*(y_speed*joy -> axes[1]);
+    motorA = 1500 + (A_sign)*FrontOff*Reverse*(y_speed*joy -> axes[1]);
+    motorB = 1500 + (B_sign)*FrontOff*Reverse*(y_speed*joy -> axes[1]);
+	motorC = 1500 + (C_sign)*BackOff*Reverse*(y_speed*joy -> axes[1]);
+	motorD = 1500 + (D_sign)*BackOff*Reverse*(y_speed*joy -> axes[1]);
 }
 void Tilt(const sensor_msgs::Joy::ConstPtr& joy)
 {
-    motorE = 1500 - Reverse*(E_sign)*(yaw_pitch_speed*joy -> axes[5]);
-    motorF = 1500 + Reverse*(F_sign)*(yaw_pitch_speed*joy -> axes[5]);
+    motorE = 1500 + Reverse*(E_sign)*(yaw_pitch_speed*joy -> axes[4]);
+    motorF = 1500 - Reverse*(F_sign)*(yaw_pitch_speed*joy -> axes[4]);
 }
 void Yaw(const sensor_msgs::Joy::ConstPtr& joy)
 {
-    motorA = 1500 - FrontOff*Reverse*(yaw_pitch_speed*joy -> axes[2]);
-    motorB = 1500 + FrontOff*Reverse*(yaw_pitch_speed*joy -> axes[2]);
-	motorC = 1500 - BackOff*Reverse*(yaw_pitch_speed*joy -> axes[2]);
-	motorD = 1500 + BackOff*Reverse*(yaw_pitch_speed*joy -> axes[2]);
+    motorA = 1500 - (A_sign)*FrontOff*(yaw_pitch_speed*joy -> axes[3]);
+    motorB = 1500 + (B_sign)*FrontOff*(yaw_pitch_speed*joy -> axes[3]);
+	motorC = 1500 - (C_sign)*BackOff*(yaw_pitch_speed*joy -> axes[3]);
+	motorD = 1500 + (D_sign)*BackOff*(yaw_pitch_speed*joy -> axes[3]);
 }
 
 void LeftOrRight(const sensor_msgs::Joy::ConstPtr& joy)
 {
-    motorA = 1500 - FrontOff*Reverse*(x_speed*joy -> axes[0]);
-	motorB = 1500 + FrontOff*Reverse*(x_speed*joy -> axes[0]);
-	motorC = 1500 + BackOff*Reverse*(x_speed*joy -> axes[0]);
-	motorD = 1500 - BackOff*Reverse*(x_speed*joy -> axes[0]);
+    motorA = 1500 - (A_sign)*FrontOff*Reverse*(x_speed*joy -> axes[0]);
+	motorB = 1500 + (B_sign)*FrontOff*Reverse*(x_speed*joy -> axes[0]);
+	motorC = 1500 + (C_sign)*BackOff*Reverse*(x_speed*joy -> axes[0]);
+	motorD = 1500 - (D_sign)*BackOff*Reverse*(x_speed*joy -> axes[0]);
 }
 void Buttons(const sensor_msgs::Joy::ConstPtr& joy)
 {
-    if (joy -> buttons[5]) // led
-    led_button = 1;
-    else
-    led_button = 0;
-     
-    if (joy -> buttons[3]) // piston
+    if (joy -> buttons[9]) //piston button
     piston_button = 1;
     else
     piston_button = 0;
 
-    if (joy -> buttons[0]) // arm
+    if (joy -> buttons[4]) //arm
     arm_button = 1;
     else
     arm_button = 0;
-
-    if (!prev_PID && joy -> buttons[1]) //pid
-    {
-        if (yaw_control_effort != 0) yaw_control_effort = 0;
-        if (pitch_control_effort != 0) pitch_control_effort = 0;
-    }
   
-        
-    if(!prev_Reverse && joy -> buttons[11])
+
+    if (joy -> buttons[8]) //led
+    led_button = true;
+    else
+    led_button = false;
+
+    if(!prev_Reverse && joy -> buttons[3]) // toggle reverse mood
     {
         if (Reverse == 1) Reverse = -1;
         else if (Reverse == -1) Reverse = 1;
     }
 
 
-    if((prev_microROV_en == 0) && (joy -> buttons[9]==1))
+    if (!prev_PID && joy -> buttons[1]) //pid
     {
-        micro_activated = !micro_activated;
-        if(micro_activated)
-        ROS_INFO_STREAM("Micro ROV activated!");
-        else
-        ROS_INFO_STREAM("Micro ROV deactivated!");
+        if (yaw_control_effort != 0) yaw_control_effort = 0;
+        if (pitch_control_effort != 0) pitch_control_effort = 0;
     }
 
-    if((prev_BackOff == 0) && (joy -> buttons[10]==1))
+///////// next buttons are to control speed /////////////
+    if (joy -> buttons[6]) // control z_micro_speed with a button
+    z_micro_speed = 400;
+    else
+    z_micro_speed = 200;
+
+    if (joy -> buttons[10])
+    {
+        x_speed = 400;
+        y_speed = 400;
+    }
+    else
+    {
+        x_speed = 200;
+        y_speed = 200;
+    }
+
+    if (joy -> buttons[11])
+    {
+        yaw_pitch_speed = 400;
+        yaw_pitch_speed = 400;
+    }
+    else
+    {
+        yaw_pitch_speed = 200;
+        yaw_pitch_speed = 200;
+    }
+
+
+    ///////////////////////////////////////// for backOff and frontOff modes ////////////////////////////////////////
+  
+    if((prev_BackOff == 0) && (joy -> buttons[2]==1))
     {
         BackOff = BackOff? 0:1;
         if(BackOff)
@@ -417,7 +455,7 @@ void Buttons(const sensor_msgs::Joy::ConstPtr& joy)
         ROS_INFO_STREAM("Back thrusters off mode ON!!");
     }
 
-    if((prev_FrontOff == 0) && (joy -> buttons[8]==1))
+    if((prev_FrontOff == 0) && (joy -> buttons[0]==1))
     {
         FrontOff = FrontOff? 0:1;
         if(FrontOff)
@@ -425,7 +463,14 @@ void Buttons(const sensor_msgs::Joy::ConstPtr& joy)
         else
         ROS_INFO_STREAM("Front thrusters off mode ON!!");
     }
-
+    if((prev_serial == 0) && (joy -> buttons[0]==1))
+    {
+        FrontOff = FrontOff? 0:1;
+        if(FrontOff)
+        ROS_INFO_STREAM("Front thrusters off mode off!!");
+        else
+        ROS_INFO_STREAM("Front thrusters off mode ON!!");
+    }
 }
 void Right()
 {
@@ -446,15 +491,23 @@ void concatenate_values ()
 {
     std::stringstream ss;
     char buffer[4] = "";
+    char l_buffer[4] = "";
+    char r_buffer[4] = "";
+    char ph_buffer[3] = "";
     sprintf(buffer, "%d", motorF);
-    if (!micro_activated)
-    ss << "A" << motor_def_A << "B" <<  motor_def_B << "C" <<  motor_def_C << "D" <<  motor_def_D << "E" <<  motor_def_E << "F" <<  buffer << "G" << arm_button << piston_button << led_button << "K";
+    sprintf(l_buffer, "%d", l_micro);
+    sprintf(r_buffer, "%d", r_micro);
+    if (!send_micro)
+    ss << "A" << motor_def_A << "B" <<  motor_def_B << "C" <<  motor_def_C
+     << "D" <<  motor_def_D << "E" <<  motor_def_E << "F" <<  buffer << "G" 
+     << arm_button << piston_button << led_button << ph << "K";
     else
-    ss << "A" << motor_def_A << "B" <<  motor_def_B << "C" <<  motor_def_C << "D" <<  motor_def_D << "E" <<  motor_def_E << "F" <<  buffer << "G" << arm_button << piston_button << led_button << micro_str << "K";
+    ss << "A" << motor_def_A << "B" <<  motor_def_B << "C" <<  motor_def_C
+     << "D" <<  motor_def_D << "E" <<  motor_def_E << "F" <<  buffer << "G"
+     << arm_button << piston_button << led_button << ph << "X" << l_buffer << "Y" << r_buffer << "K";
     
     msg.data = ss.str();
 }
-
 
 /*
 void DiagonalRight(const sensor_msgs::Joy::ConstPtr& joy)
